@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react'
 import { TaskForm } from './components/tasks/forms/TaskForm'
-import { taskReducer } from './components/reducer/task.reducer';
+import { taskReducer } from './reducer/task.reducer';
 import { Task } from './components/tasks/Task';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './components/ui/dialog';
 import { Button } from './components/ui/button';
