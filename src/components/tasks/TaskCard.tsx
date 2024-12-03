@@ -69,7 +69,7 @@ export const TaskCard = ({ task, dispatch }: { task: Task; dispatch: React.Dispa
                                             Add Subtask
                                         </Button>
                                     </div>
-                                    {renderSubtasks(subtask.subTasks, subtask.id)} {/* Render nested subtasks */}
+                                    {renderSubtasks(subtask.subTasks)}
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>
