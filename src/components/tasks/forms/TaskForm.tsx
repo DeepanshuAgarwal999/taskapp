@@ -31,7 +31,7 @@ export function TaskForm({
     dispatch: React.Dispatch<TaskAction>;
     setModalOpen: (open: boolean) => void;
     currentTask?: Task | null;
-    parentId?: number | null; // If adding/editing a subtask
+    parentId?: number | null;
 }) {
     const form = useForm({
         resolver: zodResolver(formSchema),
