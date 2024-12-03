@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from 'react'
 import { TaskForm } from './components/tasks/forms/TaskForm'
-import { taskReducer } from './components/reducer/task.reducer';
-import { Task } from './components/tasks/Task';
+import { taskReducer } from './reducer/task.reducer';
+import { TaskCard } from './components/tasks/TaskCard';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './components/ui/dialog';
 import { Button } from './components/ui/button';
 
@@ -12,12 +12,6 @@ const initialState = {
 const App = () => {
   const [state, dispatch] = useReducer(taskReducer, initialState);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isEdit, setIsEdit] = useState<Task | null>(null);
-
-  const handleEdit = (task: Task) => {
-    setModalOpen(true)
-    setIsEdit(task)
-  }
   return (
     <section className='container p-6'>
       <header className='flex items-center justify-between my-=-098r5e43wq21  '>
@@ -28,14 +22,13 @@ const App = () => {
       <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
         <DialogTrigger asChild >
           <Button variant="outline" onClick={() => {
-            setIsEdit(null)
+            setModalOpen(true)
           }}>Add task</Button>
         </DialogTrigger>
         <DialogTitle>
         </DialogTitle>
         <DialogContent className="sm:max-w-[425px]">
-          <h1 className='font-semibold text-lg'>{isEdit ? "Edit Task" : "Add Task"}</h1>
-          <TaskForm dispatch={dispatch} action={isEdit ? "update" : "create"} task={isEdit} setModalOpen={setModalOpen}/>
+          <TaskForm dispatch={dispatch} setModalOpen={setModalOpen} action='create' currentTask={null} />
         </DialogContent>
       </Dialog>
       {
@@ -43,7 +36,7 @@ const App = () => {
       }
       <div className='flex flex-col gap-4 items-center justify-center mt-10'>
         {state.tasks.map((task) => (
-          <Task key={task.id} task={task} dispatch={dispatch} onEdit={handleEdit} />
+          <TaskCard key={task.id} task={task} dispatch={dispatch} />
         ))}
       </div>
     </section>
